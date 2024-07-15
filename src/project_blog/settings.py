@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     # -------- thirdparty apps -------- 
     'rest_framework',
     # -------- built-in apps ----------
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
     # --------- local installed apps ----------
     'blog_app.apps.BlogAppConfig',
     'books_app.apps.BooksAppConfig',
+    'apis.apps.ApisConfig',
 ]
 
 MIDDLEWARE = [
