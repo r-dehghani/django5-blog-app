@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'blog_app.apps.BlogAppConfig',
     'books_app.apps.BooksAppConfig',
     'apis.apps.ApisConfig',
+    'todos_app.apps.TodosAppConfig',
 ]
 
 MIDDLEWARE = [
