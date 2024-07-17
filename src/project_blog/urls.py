@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('apis.urls'), name='apis'),
     path('books/', include('books_app.urls',), name='books'),
+    path('api/', include('todos_app.urls',), name='todo'),
 ]
 
 
