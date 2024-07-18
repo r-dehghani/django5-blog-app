@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.db.models.functions import Now
+from django.conf import settings
+
 
 class Posts(models.Model):
     class Status(models.TextChoices):
@@ -12,6 +14,7 @@ class Posts(models.Model):
     title = models.CharField(max_length=300,)
     slug = models.SlugField(max_length=300, unique=True)
     body = models.TextField()
+    author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
