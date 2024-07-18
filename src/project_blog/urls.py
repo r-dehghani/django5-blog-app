@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/', include('apis.urls'), name='apis'),
     path('books/', include('books_app.urls',), name='books'),
     path('api/', include('todos_app.urls',), name='todo'),
+    path('api/v1/', include('blog_app.urls',), name='blog'),
 ]
 
 
