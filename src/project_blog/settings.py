@@ -31,17 +31,29 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # -------- thirdparty apps -------- 
+    'rest_framework',
+    'whitenoise.runserver_nostatic',
+    'corsheaders',
+    # -------- built-in apps ----------
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # --------- local installed apps ----------
+    'blog_app.apps.BlogAppConfig',
+    'books_app.apps.BooksAppConfig',
+    'apis.apps.ApisConfig',
+    'todos_app.apps.TodosAppConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -54,7 +66,7 @@ ROOT_URLCONF = 'project_blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,8 +128,36 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"] # tell django to seatch this place for static files
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Media files (uploaede by end-users)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'uploads'
+
+
+
+
+# ---------------- REST_FRAMEWORK SPECIFIC SETTINGS ----------------
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny",],
+}
+
+# --------------- Cross origin resource sharing settings -----------------
+#TODO note that we have whitelisted to domain by now
+CORS_ALLOWED_ORIGINS = (
+    "http://localhost:3000", # this is for react is it is used
+    "http://localhost:8000", # this one is for django 
+)
+
+# csrf token settings 
+CSRF_TRUSTED_ORIGINS = ["localhost:3000"] # for react page 92
