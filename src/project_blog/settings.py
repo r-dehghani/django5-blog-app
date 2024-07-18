@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'books_app.apps.BooksAppConfig',
     'apis.apps.ApisConfig',
     'todos_app.apps.TodosAppConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -155,9 +156,13 @@ REST_FRAMEWORK = {
 # --------------- Cross origin resource sharing settings -----------------
 #TODO note that we have whitelisted to domain by now
 CORS_ALLOWED_ORIGINS = (
-    "http://localhost:3000", # this is for react is it is used
-    "http://localhost:8000", # this one is for django 
+    "http://127.0.0.1:3000", # this is for react is it is used
+    "http://127.0.0.1:8000", # this one is for django 
 )
 
 # csrf token settings 
-CSRF_TRUSTED_ORIGINS = ["localhost:3000"] # for react page 92
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:3000"] # for react page 92
+
+
+# -------------- modify user configurations -----------------
+AUTH_USER_MODEL = 'accounts.CustomUser'
