@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # -------- thirdparty apps -------- 
     'rest_framework',
     'whitenoise.runserver_nostatic',
+    'corsheaders',
     # -------- built-in apps ----------
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -150,4 +152,9 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny",],
 }
 
-
+# --------------- Cross origin resource sharing settings -----------------
+#TODO note that we have whitelisted to domain by now
+CORS_ALLOWED_ORIGINS = (
+    "http://localhost:3000",
+    "http://localhost:8000",
+)
